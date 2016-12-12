@@ -10,6 +10,7 @@ import UIKit
 
 class PartiesTableViewController: UITableViewController {
 
+    // initial values
     var parties = [Party]()
     let persistance = Persistance()
     let cellIdentifier = "partyCell"
@@ -18,12 +19,14 @@ class PartiesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // setting table data
         tableView.estimatedRowHeight = 60
         tableView.rowHeight = UITableViewAutomaticDimension
-        print("tableview load")
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        // when ever this view is going to appear, refresh the list
         parties = persistance.fetchParties()
         tableView.reloadData()
     }
@@ -38,21 +41,32 @@ class PartiesTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+        
+        // there is only one section
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+        // the row number equals the party count
         return parties.count
-        
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        // cell defining function
+        
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath ) as! PartyTableViewCell
+        
+        // set the date format
         let formatter = DateFormatter()
         formatter.dateFormat = "h:mm a, MM/dd"
         
+        // fetch party record
         let party = parties[indexPath.row]
+
+        // change label
         cell.partyDescriptionLabel.text = "\(party.name) - \(formatter.string(from: party.startDate))"
         
         
@@ -71,7 +85,7 @@ class PartiesTableViewController: UITableViewController {
             parties.remove(at: indexPath.row)
             persistance.saveParties(parties: parties)
             
-            // Delete the row from the data source
+            // Delete the row
             tableView.deleteRows(at: [indexPath], with: .fade)
             
             
@@ -84,6 +98,8 @@ class PartiesTableViewController: UITableViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        // this is where we go to the mapView, we pass in the address of the party that is selected.
+        // Since the segue is only going to be started when the cell is selected, it is safe to force unwrap indexPathForSelectedRow.
         if segue.identifier == "mapViewSegue" {
             let destination = segue.destination as? MapViewController
             let selectedRow = partyTableView.indexPathForSelectedRow!.row

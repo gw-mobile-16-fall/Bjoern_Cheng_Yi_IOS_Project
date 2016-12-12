@@ -19,6 +19,7 @@ class Party: NSObject, NSCoding {
     let idKey = "id"
     let addressKey = "address"
     
+    // constructor
     init(name: String, startDate: Date, address: String) {
         
         self.id = NSUUID().uuidString
@@ -27,6 +28,8 @@ class Party: NSObject, NSCoding {
         self.address = address
     }
     
+    
+    // decoder
     required init?(coder aDecoder: NSCoder) {
         name = aDecoder.decodeObject(forKey: nameKey) as! String
         startDate = aDecoder.decodeObject(forKey: startDateKey) as! Date
@@ -35,6 +38,7 @@ class Party: NSObject, NSCoding {
         
     }
     
+    // coder
     func encode(with aCoder: NSCoder) {
         aCoder.encode(name, forKey: nameKey)
         aCoder.encode(startDate, forKey: startDateKey)

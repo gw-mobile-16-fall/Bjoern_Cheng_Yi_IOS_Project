@@ -42,7 +42,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="partyDescriptionLabel" destination="VzM-bN-L6e" id="2Jg-Ea-siV"/>
-                                    <segue destination="K9v-CB-01a" kind="show" identifier="mapViewSegue" id="KVh-Kk-7H9"/>
+                                    <segue destination="XjB-od-25C" kind="show" identifier="mapViewSegue" id="Hip-f5-yH8"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -67,12 +67,36 @@
             <point key="canvasLocation" x="1527.2" y="136.28185907046478"/>
         </scene>
         <!--Map View Controller-->
-        <scene sceneID="TKf-YC-hUm">
+        <scene sceneID="qoG-oe-SEq">
             <objects>
-                <viewController id="K9v-CB-01a" customClass="MapViewController" customModule="party_app" customModuleProvider="target" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sEU-Fr-fkF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="XjB-od-25C" customClass="MapViewController" customModule="party_app" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xQf-XO-V69"/>
+                        <viewControllerLayoutGuide type="bottom" id="Tay-WO-vRa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wAF-N3-2KY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="H9M-cE-pvj">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="H9M-cE-pvj" firstAttribute="top" secondItem="xQf-XO-V69" secondAttribute="bottom" id="8Pr-fQ-RUc"/>
+                            <constraint firstAttribute="trailing" secondItem="H9M-cE-pvj" secondAttribute="trailing" id="Fse-kn-qn7"/>
+                            <constraint firstItem="Tay-WO-vRa" firstAttribute="top" secondItem="H9M-cE-pvj" secondAttribute="bottom" id="PBf-iW-VZx"/>
+                            <constraint firstItem="H9M-cE-pvj" firstAttribute="leading" secondItem="wAF-N3-2KY" secondAttribute="leading" id="ejk-Dp-M60"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="map" destination="H9M-cE-pvj" id="Unc-uu-H5J"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zv7-nt-tfI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2296.8000000000002" y="-511.39430284857576"/>
+            <point key="canvasLocation" x="2259" y="-641"/>
         </scene>
         <!--Add Party View Controller-->
         <scene sceneID="hHT-Au-gzp">
